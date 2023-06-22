@@ -1,5 +1,8 @@
 package com.epam.algorithms;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 /**
  * Here are the tasks for working with the arrays.
  * <p>
@@ -11,7 +14,8 @@ public class ArrayTasks {
      * Return a String[] array that will list all the seasons of the year, starting with winter.
      */
     public String[] seasonsArray() {
-        return null;
+        String[] seasons = {"winter", "spring", "summer", "fall"};
+        return seasons;
     }
 
     /**
@@ -23,7 +27,16 @@ public class ArrayTasks {
      * length = 1  -> [1] length = 3  -> [1, 2, 3] length = 5  -> [1, 2, 3, 4, 5]
      */
     public int[] generateNumbers(int length) {
-        return null;
+        if (length <= 0) {
+            throw new IllegalArgumentException("Length must be greater than zero.");
+        }
+
+        int[] numbers = new int[length];
+        for (int i = 1; i <= length; i++) {
+            numbers[i-1] = i;
+        }
+
+        return numbers;
     }
 
     /**
@@ -34,7 +47,11 @@ public class ArrayTasks {
      * arr = [1, 3, 5]   -> sum = 9 arr = [5, -3, -4] -> sum = -2
      */
     public int totalSum(int[] arr) {
-        return 0;
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        return sum;
     }
 
     /**
@@ -46,7 +63,12 @@ public class ArrayTasks {
      * arr = [99, -7, 102], number = -7    ->   2 arr = [5, -3, -4],   number = 10    ->  -1
      */
     public int findIndexOfNumber(int[] arr, int number) {
-        return 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == number) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -58,7 +80,11 @@ public class ArrayTasks {
      * "pineapple"]
      */
     public String[] reverseArray(String[] arr) {
-        return null;
+        String[] reversed = new String[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+            reversed[arr.length - 1 - i] = arr[i];
+        }
+        return reversed;
     }
 
     /**
@@ -70,7 +96,23 @@ public class ArrayTasks {
      * arr = [1,-2, 3]      -> [1, 3] arr = [-1, -2, -3]   -> [] arr = [1, 2]         -> [1, 2]
      */
     public int[] getOnlyPositiveNumbers(int[] arr) {
-        return null;
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > 0) {
+                count++;
+            }
+        }
+
+        int[] positives = new int[count];
+        int index = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > 0) {
+                positives[index] = arr[i];
+                index++;
+            }
+        }
+
+        return positives;
     }
 
     /**
@@ -83,7 +125,23 @@ public class ArrayTasks {
      * arr = [[3, 1, 2,], [3,2]] -> [[2, 3], [1, 2, 3]] arr = [[5, 4], [7]]       -> [[7], [4, 5]]
      */
     public int[][] sortRaggedArray(int[][] arr) {
-        return null;
-    }
+        // Sort the individual arrays in ascending order and by length
+        Arrays.sort(arr, new Comparator<int[]>() {
+            public int compare(int[] a, int[] b) {
+                int diff = a.length - b.length;
 
+                if (diff == 0) {
+                    for (int i = 0; i < a.length; i++) {
+                        if (a[i] != b[i]) {
+                            return a[i] - b[i];
+                        }
+                    }
+                }
+
+                return diff;
+            }
+        });
+
+        return arr;
+    }
 }
