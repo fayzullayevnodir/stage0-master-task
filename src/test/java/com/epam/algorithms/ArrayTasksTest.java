@@ -55,7 +55,7 @@ public class ArrayTasksTest {
     @ParameterizedTest
     @MethodSource("generatedNumbersTestProvider")
     public void generateNumbersTests(int length, int[] expectedArr) {
-        assertArrayEquals(expectedArr, arrayTasks.generateNumbers(length),
+        assertArrayEquals(expectedArr, ArrayTasks.generateNumbers(length),
                 "I think, something went wrong with number generation implementation");
     }
 
