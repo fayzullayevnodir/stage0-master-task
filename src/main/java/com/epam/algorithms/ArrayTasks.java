@@ -1,5 +1,7 @@
 package com.epam.algorithms;
-import java.util.*;
+
+import java.util.Arrays;
+import java.util.Comparator;
 public class ArrayTasks {
     public static String[] seasonsArray() {
         return new String[]{"winter", "spring", "summer", "fall"};
